@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import classes.DailyExcersiseRoutine;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Gautam on 19-11-2017.
@@ -61,7 +64,9 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<DailyExerc
     public void onBindViewHolder(MyViewHolder holder, int position) {
         DailyExcersiseRoutine dailyExcersiseRoutine = dailyExcersiseRoutineList.get(position);
         holder.day.setText(dailyExcersiseRoutine.getDay());
+
         holder.restDaySwitch.setChecked(dailyExcersiseRoutine.isRestDay());
+        Log.d(TAG, "onBindViewHolderfgdfgfd: "+ dailyExcersiseRoutine.getExcersiseList().keySet());
     }
 
     @Override

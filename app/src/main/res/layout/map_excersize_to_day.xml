@@ -8,11 +8,42 @@
     android:scrollbarStyle="insideOverlay">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/dayItemHolder"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/day_item"/>
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_light"
+            android:text="Your Routine"
+            android:textColor="@color/primaryText"
+            android:textSize="36sp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dayItemHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/day_item"
+
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="DONE"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+
 
 </ScrollView>

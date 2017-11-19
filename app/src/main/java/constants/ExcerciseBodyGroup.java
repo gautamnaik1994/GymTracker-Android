@@ -5,4 +5,5 @@ package constants;
  */
 
 public enum ExcerciseBodyGroup {
+    CHEST,BICEPS,FOREARMS,BACK,SHOULDER,LEGS,ABS,CARDIO,OTHER
 }

@@ -10,8 +10,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:contentPadding="8dp"
@@ -32,14 +30,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:showDividers="none"
-                android:weightSum="10">
+                >
 
                 <TextView
                     android:id="@+id/day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
+
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans_semibold"
                     android:text="@string/monday"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold"/>
 
@@ -47,7 +48,8 @@
                     android:id="@+id/restDaySwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+
+                    android:switchPadding="5dp"
                     android:text="@string/rest_day"
                     />
 
@@ -60,89 +62,75 @@
                 android:layout_marginTop="5dp"
                 android:background="@color/divider"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="3">
+            <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="3">
 
                 <CheckBox
                     android:id="@+id/chest"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/chest"/>
 
                 <CheckBox
                     android:id="@+id/back"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/back"/>
+                    android:layout_columnWeight="1"
+                    android:text="@string/back"
+                    />
 
                 <CheckBox
                     android:id="@+id/biceps"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/biceps"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
                 <CheckBox
                     android:id="@+id/forearms"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/forearms"/>
-
                 <CheckBox
                     android:id="@+id/shoulder"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/shoulder"/>
 
                 <CheckBox
                     android:id="@+id/legs"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/legs"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-
 
                 <CheckBox
                     android:id="@+id/abs"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/abs"/>
+
                 <CheckBox
                     android:id="@+id/cardio"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/cardio"/>
 
                 <CheckBox
                     android:id="@+id/other"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
                     android:text="@string/other"/>
-            </LinearLayout>
+
+
+            </GridLayout>
 
         </LinearLayout>
 
