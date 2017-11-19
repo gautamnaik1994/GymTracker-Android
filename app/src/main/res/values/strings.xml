@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Gym Tracker</string>
+    <string name="login_with_google">Login With Google</string>
+    <string name="rest_day">Rest Day</string>
+    <string name="monday">Monday</string>
+    <string name="chest">Chest</string>
+    <string name="back">Back</string>
+    <string name="biceps">Biceps</string>
+    <string name="forearms">Forearms</string>
+    <string name="shoulder">Shoulder</string>
+    <string name="legs">Legs</string>
+    <string name="abs">Abs</string>
+    <string name="cardio">Cardio</string>
+    <string name="other">Other</string>
+</resources>
