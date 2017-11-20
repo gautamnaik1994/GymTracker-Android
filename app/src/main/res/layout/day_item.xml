@@ -65,69 +65,70 @@
             <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:columnCount="3">
+                        android:columnCount="3"
+                        android:id="@+id/excerciseGroupHolder">
 
-                <CheckBox
-                    android:id="@+id/chest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/chest"/>
+                <!--<CheckBox-->
+                    <!--android:id="@+id/chest"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/chest"/>-->
 
-                <CheckBox
-                    android:id="@+id/back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/back"
-                    />
+                <!--<CheckBox-->
+                    <!--android:id="@+id/back"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/back"-->
+                    <!--/>-->
 
-                <CheckBox
-                    android:id="@+id/biceps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/biceps"/>
-                <CheckBox
-                    android:id="@+id/forearms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/forearms"/>
-                <CheckBox
-                    android:id="@+id/shoulder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/shoulder"/>
+                <!--<CheckBox-->
+                    <!--android:id="@+id/biceps"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/biceps"/>-->
+                <!--<CheckBox-->
+                    <!--android:id="@+id/forearms"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/forearms"/>-->
+                <!--<CheckBox-->
+                    <!--android:id="@+id/shoulder"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/shoulder"/>-->
 
-                <CheckBox
-                    android:id="@+id/legs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/legs"/>
+                <!--<CheckBox-->
+                    <!--android:id="@+id/legs"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/legs"/>-->
 
-                <CheckBox
-                    android:id="@+id/abs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/abs"/>
+                <!--<CheckBox-->
+                    <!--android:id="@+id/abs"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/abs"/>-->
 
-                <CheckBox
-                    android:id="@+id/cardio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/cardio"/>
+                <!--<CheckBox-->
+                    <!--android:id="@+id/cardio"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/cardio"/>-->
 
-                <CheckBox
-                    android:id="@+id/other"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="@string/other"/>
+                <!--<CheckBox-->
+                    <!--android:id="@+id/other"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:text="@string/other"/>-->
 
 
             </GridLayout>

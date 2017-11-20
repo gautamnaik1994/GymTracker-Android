@@ -1,49 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbarStyle="insideOverlay">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
 
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dayItemHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
+        tools:listitem="@layout/day_item"
+        android:layoutAnimation="@anim/layout_animation_slide_from_left"
+        >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_light"
-            android:text="Your Routine"
-            android:textColor="@color/primaryText"
-            android:textSize="36sp"/>
+    </android.support.v7.widget.RecyclerView>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/dayItemHolder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/day_item"
+    <!--<Button-->
+    <!--android:id="@+id/button"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:text="DONE"-->
+    <!--android:textColor="@android:color/white"-->
+    <!--android:layout_marginTop="20dp"/>-->
 
-            >
-
-        </android.support.v7.widget.RecyclerView>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="DONE"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="20dp"/>
-
-    </LinearLayout>
+</LinearLayout>
 
 
 
-</ScrollView>
