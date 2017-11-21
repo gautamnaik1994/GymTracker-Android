@@ -1,7 +1,6 @@
-package classes;
+package Classes;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 /**
  * Created by Gautam on 18-11-2017.
@@ -10,15 +9,15 @@ import java.util.Hashtable;
 public class DailyExcersiseRoutine {
     private String day;
     private boolean isRestDay;
-    private Hashtable<String,Boolean> exerciseList;
+    private ArrayList<Boolean> exerciseBoolValues;
 
     public DailyExcersiseRoutine(){
 
     }
-    public DailyExcersiseRoutine(String day, Boolean isRestDay,Hashtable<String,Boolean> exerciseList){
+    public DailyExcersiseRoutine(String day, Boolean isRestDay,ArrayList<Boolean> exerciseBoolValues){
         this.day=day;
         this.isRestDay=isRestDay;
-        this.exerciseList=exerciseList;
+        this.exerciseBoolValues = exerciseBoolValues;
     }
 
     public String getDay() {
@@ -37,12 +36,12 @@ public class DailyExcersiseRoutine {
         isRestDay = restDay;
     }
 
-    public Hashtable<String,Boolean> getExcersiseList() {
-        return exerciseList;
+    public ArrayList<Boolean> getExcersiseList() {
+        return exerciseBoolValues;
     }
 
-    public void setExcersiseList(Hashtable<String,Boolean> exerciseList) {
-        this.exerciseList = exerciseList;
+    public void setExcersiseList(ArrayList<Boolean> exerciseBoolValues) {
+        this.exerciseBoolValues = exerciseBoolValues;
     }
 }
 

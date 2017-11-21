@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -17,11 +18,11 @@ import com.gautamnaik1994.gymtracker.R;
 
 import java.util.List;
 
-import classes.DailyExcersiseRoutine;
-import constants.ExcerciseBodyGroup;
+import Classes.DailyExcersiseRoutine;
+import Constants.ExcerciseBodyGroup;
+import Interfaces.excersizeRoutineRestSwitchClickListener;
 
 import static android.content.ContentValues.TAG;
-import static android.widget.GridLayout.*;
 
 /**
  * Created by Gautam on 19-11-2017.
@@ -29,10 +30,12 @@ import static android.widget.GridLayout.*;
 
 public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<DailyExcersiseRoutine> dailyExcersiseRoutineList;
+    private excersizeRoutineRestSwitchClickListener excersizeRoutineRestSwitchClickListener;
 
     private static final int HEADER_VIEW = 1;
     private static final int LIST_ITEM_VIEW = 2;
     private static final int FOOTER_VIEW = 3;
+
 
     public static String capitalizeFirstLetter(@NonNull String customText) {
         int count = customText.length();
@@ -51,13 +54,20 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
         public Switch restDaySwitch;
         public CheckBox chest, back, biceps, forearms, shoulder, legs, abs, cardio, other;
         public GridLayout excerciseGroupHolder;
+        public LinearLayout gridHolder;
 
-        public ListItemViewHolder(View view) {
+        public ListItemViewHolder(View view, excersizeRoutineRestSwitchClickListener excersizeRoutineRestSwitchClickListener) {
             super(view);
             day = view.findViewById(R.id.day);
             restDaySwitch = view.findViewById(R.id.restDaySwitch);
             excerciseGroupHolder = view.findViewById(R.id.excerciseGroupHolder);
-
+            gridHolder=view.findViewById(R.id.gridHolder);
+       restDaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+               
+           }
+       });
         }
     }
 
@@ -77,8 +87,9 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
 //    }
 
 
-    public DailyExerciseRoutineAdapter(List<DailyExcersiseRoutine> dailyExcersiseRoutineList) {
+    public DailyExerciseRoutineAdapter(List<DailyExcersiseRoutine> dailyExcersiseRoutineList,excersizeRoutineRestSwitchClickListener excersizeRoutineRestSwitchClickListener) {
         this.dailyExcersiseRoutineList = dailyExcersiseRoutineList;
+        this.excersizeRoutineRestSwitchClickListener=excersizeRoutineRestSwitchClickListener;
     }
 
     @Override
@@ -86,7 +97,7 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
         switch (viewType) {
             case LIST_ITEM_VIEW:
                 View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.day_item, parent, false);
-                return new ListItemViewHolder(itemView);
+                return new ListItemViewHolder(itemView,excersizeRoutineRestSwitchClickListener);
 
             case HEADER_VIEW:
                 View headeriItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.big_header, parent, false);
@@ -97,27 +108,48 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
 
     }
 
+//    @Override
+//    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//        excersizeRoutineRestSwitchClickListener.onClick(compoundButton,pos);
+//        dailyExcersiseRoutine.setRestDay(b);
+//        notifyDataSetChanged();
+//    }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         switch (holder.getItemViewType()) {
             case LIST_ITEM_VIEW:
+                final int pos=position-1;
                 ListItemViewHolder myViewHolder = (ListItemViewHolder) holder;
-                DailyExcersiseRoutine dailyExcersiseRoutine = dailyExcersiseRoutineList.get(position - 1);
+                final DailyExcersiseRoutine dailyExcersiseRoutine = dailyExcersiseRoutineList.get(pos);
+                boolean isRestDay= dailyExcersiseRoutine.isRestDay();
+
+
                 myViewHolder.day.setText(dailyExcersiseRoutine.getDay());
-                myViewHolder.restDaySwitch.setChecked(dailyExcersiseRoutine.isRestDay());
+                myViewHolder.restDaySwitch.setChecked(isRestDay);
+//                myViewHolder.restDaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//
+//                });
                 Context mContext = myViewHolder.day.getContext();
                 myViewHolder.excerciseGroupHolder.removeAllViews();
-                for (ExcerciseBodyGroup bodyGroup : ExcerciseBodyGroup.values()) {
-                    CheckBox checkBox = new CheckBox(mContext);
-                    checkBox.setText(capitalizeFirstLetter(bodyGroup.toString()));
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(
-                            GridLayout.UNDEFINED, GridLayout.FILL, 1f),
-                            GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
-                    myViewHolder.excerciseGroupHolder.addView(checkBox, param);
+                if(!isRestDay){
+                    for (ExcerciseBodyGroup bodyGroup : ExcerciseBodyGroup.values()) {
+                        CheckBox checkBox = new CheckBox(mContext);
+                        checkBox.setId(bodyGroup.ordinal()*555 + 55);
+                        checkBox.setText(capitalizeFirstLetter(bodyGroup.toString()));
+                        checkBox.setChecked(dailyExcersiseRoutine.getExcersiseList().get(bodyGroup.ordinal()));
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(
+                                GridLayout.UNDEFINED, GridLayout.FILL, 1f),
+                                GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
+                        myViewHolder.excerciseGroupHolder.addView(checkBox, param);
+                    }
                 }
+                else {
+                    myViewHolder.gridHolder.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+                }
+
 
                 break;
 
