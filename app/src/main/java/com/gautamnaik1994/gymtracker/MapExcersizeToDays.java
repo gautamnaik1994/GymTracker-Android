@@ -16,7 +16,7 @@ import Adapters.DailyExerciseRoutineAdapter;
 import Classes.DailyExcersiseRoutine;
 import Constants.DaysOfWeek;
 import Constants.ExcerciseBodyGroup;
-import Interfaces.excersizeRoutineRestSwitchClickListener;
+import Interfaces.ExcersizeRoutineRestSwitchClickListener;
 
 public class MapExcersizeToDays extends AppCompatActivity {
     private List<DailyExcersiseRoutine> dailyExcersiseRoutineList = new ArrayList<>();
@@ -30,10 +30,14 @@ public class MapExcersizeToDays extends AppCompatActivity {
         dayItemHolder = findViewById(R.id.dayItemHolder);
         dayItemHolder.setHasFixedSize(true);
 //        dayItemHolder.setNestedScrollingEnabled(false);
-        dailyExerciseRoutineAdapter = new DailyExerciseRoutineAdapter(dailyExcersiseRoutineList, new excersizeRoutineRestSwitchClickListener() {
+        dailyExerciseRoutineAdapter = new DailyExerciseRoutineAdapter(dailyExcersiseRoutineList, new ExcersizeRoutineRestSwitchClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(view.getContext(), "Item Clicked", Toast.LENGTH_LONG).show();
+
+                Toast.makeText(view.getContext(), "Item Clicked"+ dailyExcersiseRoutineList.get(position).getDay().toString() , Toast.LENGTH_SHORT).show();
+                boolean isRestday=dailyExcersiseRoutineList.get(position).isRestDay();
+                dailyExcersiseRoutineList.get(position).setRestDay(!isRestday);
+                dailyExerciseRoutineAdapter.notifyDataSetChanged();
             }
         });
 
