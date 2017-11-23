@@ -132,7 +132,9 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
                 });
                 Context mContext = myViewHolder.day.getContext();
                 myViewHolder.excerciseGroupHolder.removeAllViews();
+                Log.d(TAG, "onBindViewHolder: " + isRestDay + " " + dailyExcersiseRoutine.getDay() );
                 if (!isRestDay) {
+                    Log.d(TAG, "onBindViewHolder-inside lopp : " + dailyExcersiseRoutine.getDay() );
                     for (ExcerciseBodyGroup bodyGroup : ExcerciseBodyGroup.values()) {
                         CheckBox checkBox = new CheckBox(mContext);
                         checkBox.setId(bodyGroup.ordinal() * 555 + 55);
@@ -145,7 +147,7 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
                         myViewHolder.excerciseGroupHolder.addView(checkBox, param);
                     }
                 } else {
-                    myViewHolder.gridHolder.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+//                    myViewHolder.gridHolder.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
                 }
 
 
@@ -167,7 +169,7 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
 
         if (dailyExcersiseRoutineList != null) {
             listSize = dailyExcersiseRoutineList.size();
-            Log.d(TAG, "getItemCount: " + dailyExcersiseRoutineList.size());
+
         }
 
         if (listSize > 0) {

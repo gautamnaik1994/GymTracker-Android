@@ -1,12 +1,13 @@
 package Classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Gautam on 18-11-2017.
  */
 
-public class DailyExcersiseRoutine {
+public class DailyExcersiseRoutine implements Serializable {
     private String day;
     private boolean isRestDay;
     private ArrayList<Boolean> exerciseBoolValues;
@@ -42,6 +43,11 @@ public class DailyExcersiseRoutine {
 
     public void setExcersiseList(ArrayList<Boolean> exerciseBoolValues) {
         this.exerciseBoolValues = exerciseBoolValues;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
 
