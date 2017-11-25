@@ -1,4 +1,4 @@
-package Classes;
+package Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,6 +43,9 @@ public class DailyExcersiseRoutine implements Serializable {
 
     public void setExcersiseList(ArrayList<Boolean> exerciseBoolValues) {
         this.exerciseBoolValues = exerciseBoolValues;
+    }
+    public void setExerciseBoolValues(int position, boolean value){
+       this.exerciseBoolValues.set(position,value);
     }
 
     @Override

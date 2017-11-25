@@ -7,5 +7,5 @@ import android.view.View;
  */
 
 public interface ExcersizeRoutineRestSwitchClickListener {
-    void onClick(View view, int position);
+    void onClick(View view, int position,boolean boolValue );
 }

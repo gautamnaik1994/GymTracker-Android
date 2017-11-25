@@ -16,7 +16,8 @@ import com.gautamnaik1994.gymtracker.R;
 
 import java.util.List;
 
-import Classes.DailyExcersiseRoutine;
+import Interfaces.ExcerciseRoutineExCheckboxListener;
+import Models.DailyExcersiseRoutine;
 import Constants.ExcerciseBodyGroup;
 import Interfaces.ExcersizeRoutineRestSwitchClickListener;
 import Utils.Utils;
@@ -31,11 +32,12 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
     private static final int FOOTER_VIEW = 3;
     private List<DailyExcersiseRoutine> dailyExcersiseRoutineList;
     private ExcersizeRoutineRestSwitchClickListener excersizeRoutineRestSwitchClickListener;
+    private ExcerciseRoutineExCheckboxListener excerciseRoutineExCheckboxListener;
 
-
-    public DailyExerciseRoutineAdapter(List<DailyExcersiseRoutine> dailyExcersiseRoutineList, ExcersizeRoutineRestSwitchClickListener excersizeRoutineRestSwitchClickListener) {
+    public DailyExerciseRoutineAdapter(List<DailyExcersiseRoutine> dailyExcersiseRoutineList, ExcersizeRoutineRestSwitchClickListener excersizeRoutineRestSwitchClickListener, ExcerciseRoutineExCheckboxListener excerciseRoutineExCheckboxListener) {
         this.dailyExcersiseRoutineList = dailyExcersiseRoutineList;
         this.excersizeRoutineRestSwitchClickListener = excersizeRoutineRestSwitchClickListener;
+        this.excerciseRoutineExCheckboxListener=excerciseRoutineExCheckboxListener;
     }
 
 
@@ -56,7 +58,7 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         switch (holder.getItemViewType()) {
             case LIST_ITEM_VIEW:
@@ -74,7 +76,7 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
 
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        excersizeRoutineRestSwitchClickListener.onClick(compoundButton, pos);
+                        excersizeRoutineRestSwitchClickListener.onClick(compoundButton, pos,b);
                     }
                 });
                 Context mContext = myViewHolder.day.getContext();
@@ -83,10 +85,20 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
                     myViewHolder.gridHolder.setVisibility(View.VISIBLE);
                     myViewHolder.excerciseGroupHolder.removeAllViews();
                     for (ExcerciseBodyGroup bodyGroup : ExcerciseBodyGroup.values()) {
+
+                        final int bodyGroupIndex=bodyGroup.ordinal();
                         CheckBox checkBox = new CheckBox(mContext);
-                        checkBox.setId(bodyGroup.ordinal() * 555 + 55);
+                        checkBox.setId(bodyGroupIndex * 555 + 55);
                         checkBox.setText(Utils.capitalizeFirstLetter(bodyGroup.toString()));
-                        checkBox.setChecked(dailyExcersiseRoutine.getExcersiseList().get(bodyGroup.ordinal()));
+                        checkBox.setOnCheckedChangeListener(null);
+                        checkBox.setChecked(dailyExcersiseRoutine.getExcersiseList().get(bodyGroupIndex));
+                        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                                excerciseRoutineExCheckboxListener.onClick(compoundButton,pos,bodyGroupIndex,b);
+                            }
+                        });
+
                         GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(
                                 GridLayout.UNDEFINED, GridLayout.FILL, 1f),
                                 GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
