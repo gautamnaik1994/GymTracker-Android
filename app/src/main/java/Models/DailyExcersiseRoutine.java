@@ -2,6 +2,8 @@ package Models;
 
 import java.util.ArrayList;
 
+import io.realm.RealmList;
+import io.realm.RealmModel;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -9,17 +11,19 @@ import io.realm.annotations.PrimaryKey;
  * Created by Gautam on 18-11-2017.
  */
 
-public class DailyExcersiseRoutine {
+public class DailyExcersiseRoutine extends RealmObject {
+    @PrimaryKey
     private String day;
     private boolean isRestDay;
-    private ArrayList<Boolean> exerciseBoolValues;
+    private RealmList<Boolean> exerciseBoolValues;
 
-    public DailyExcersiseRoutine(){
+    public DailyExcersiseRoutine() {
 
     }
-    public DailyExcersiseRoutine(String day, Boolean isRestDay,ArrayList<Boolean> exerciseBoolValues){
-        this.day=day;
-        this.isRestDay=isRestDay;
+
+    public DailyExcersiseRoutine(String day, Boolean isRestDay, RealmList<Boolean> exerciseBoolValues) {
+        this.day = day;
+        this.isRestDay = isRestDay;
         this.exerciseBoolValues = exerciseBoolValues;
     }
 
@@ -39,17 +43,17 @@ public class DailyExcersiseRoutine {
         isRestDay = restDay;
     }
 
-    public ArrayList<Boolean> getExcersiseList() {
+    public RealmList<Boolean> getExcersiseList() {
         return exerciseBoolValues;
     }
 
-    public void setExcersiseList(ArrayList<Boolean> exerciseBoolValues) {
+    public void setExcersiseList(RealmList<Boolean> exerciseBoolValues) {
         this.exerciseBoolValues = exerciseBoolValues;
     }
-    public void setExerciseBoolValues(int position, boolean value){
-       this.exerciseBoolValues.set(position,value);
-    }
 
+    public void setExerciseBoolValues(int position, boolean value) {
+        this.exerciseBoolValues.set(position, value);
+    }
 
 
 }

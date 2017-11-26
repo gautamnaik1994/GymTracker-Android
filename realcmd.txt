@@ -1,0 +1,2 @@
+adb root
+adb pull /data/data/com.gautamnaik1994.gymtracker/files/default.realm

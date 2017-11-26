@@ -2,6 +2,7 @@ package Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import Constants.ExcerciseBodyGroup;
 import Interfaces.ExcersizeRoutineRestSwitchClickListener;
 import Utils.Utils;
 
+
+
 /**
  * Created by Gautam on 19-11-2017.
  */
@@ -38,6 +41,7 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
         this.dailyExcersiseRoutineList = dailyExcersiseRoutineList;
         this.excersizeRoutineRestSwitchClickListener = excersizeRoutineRestSwitchClickListener;
         this.excerciseRoutineExCheckboxListener = excerciseRoutineExCheckboxListener;
+
     }
 
 
