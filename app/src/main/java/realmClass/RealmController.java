@@ -1,4 +1,4 @@
-package Realm;
+package realmClass;
 
 import android.app.Application;
 
