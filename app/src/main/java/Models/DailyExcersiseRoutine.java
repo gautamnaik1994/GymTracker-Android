@@ -1,13 +1,15 @@
 package Models;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Gautam on 18-11-2017.
  */
 
-public class DailyExcersiseRoutine implements Serializable {
+public class DailyExcersiseRoutine {
     private String day;
     private boolean isRestDay;
     private ArrayList<Boolean> exerciseBoolValues;
@@ -48,9 +50,7 @@ public class DailyExcersiseRoutine implements Serializable {
        this.exerciseBoolValues.set(position,value);
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+
+
 }
 

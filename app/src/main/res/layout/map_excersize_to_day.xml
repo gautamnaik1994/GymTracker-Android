@@ -1,49 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp" android:paddingTop="0dp">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="8dp"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/main.backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/routineimage"
+                    app:layout_collapseMode="parallax"
+                    tools:ignore="ContentDescription"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/black_gradient_overlay"/>
+
+            </FrameLayout>
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.AppCompat.Light"
+                app:title="Your Routine"
+                app:titleTextColor="@android:color/white"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dayItemHolder"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
         android:layoutAnimation="@anim/layout_animation_slide_from_left"
-        tools:listitem="@layout/day_item"
-        android:layout_weight="1"
-        >
-
-    </android.support.v7.widget.RecyclerView>
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="8dp"
-        android:background="@color/colorPrimary"
-        android:text="DONE"
-        android:textColor="@android:color/white"
-        android:layout_weight="0"
-
+        android:padding="8dp"
+        android:paddingTop="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="bottom"-->
-        <!--&gt;-->
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ripple"
+        android:clickable="true"
+        android:text="DONE"
+        android:textColor="@android:color/white"
+        />
 
-       <!---->
-    <!--</RelativeLayout>-->
+</android.support.design.widget.CoordinatorLayout>
 
 
-</LinearLayout>
+
+
+
 
 
 

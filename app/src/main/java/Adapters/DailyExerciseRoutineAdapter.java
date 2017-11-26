@@ -37,120 +37,125 @@ public class DailyExerciseRoutineAdapter extends RecyclerView.Adapter<RecyclerVi
     public DailyExerciseRoutineAdapter(List<DailyExcersiseRoutine> dailyExcersiseRoutineList, ExcersizeRoutineRestSwitchClickListener excersizeRoutineRestSwitchClickListener, ExcerciseRoutineExCheckboxListener excerciseRoutineExCheckboxListener) {
         this.dailyExcersiseRoutineList = dailyExcersiseRoutineList;
         this.excersizeRoutineRestSwitchClickListener = excersizeRoutineRestSwitchClickListener;
-        this.excerciseRoutineExCheckboxListener=excerciseRoutineExCheckboxListener;
+        this.excerciseRoutineExCheckboxListener = excerciseRoutineExCheckboxListener;
     }
 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case LIST_ITEM_VIEW:
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.day_item, parent, false);
-                return new ListItemViewHolder(itemView);
+//        switch (viewType) {
+//            case LIST_ITEM_VIEW:
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.day_item, parent, false);
+        return new ListItemViewHolder(itemView);
 
-            case HEADER_VIEW:
-                View headeriItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.big_header, parent, false);
-                return new HeaderItemHolder(headeriItemView);
-            default:
-                return null;
-        }
+//            case HEADER_VIEW:
+//                View headeriItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.big_header, parent, false);
+//                return new HeaderItemHolder(headeriItemView);
+//            default:
+//                return null;
+//        }
 
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-        switch (holder.getItemViewType()) {
-            case LIST_ITEM_VIEW:
-                final int pos = position - 1;
-                 ListItemViewHolder myViewHolder = (ListItemViewHolder) holder;
-                 DailyExcersiseRoutine dailyExcersiseRoutine = dailyExcersiseRoutineList.get(pos);
-                boolean isRestDay = dailyExcersiseRoutine.isRestDay();
+//        switch (holder.getItemViewType()) {
+//            case LIST_ITEM_VIEW:
+        final int pos = position - 0;
+        ListItemViewHolder myViewHolder = (ListItemViewHolder) holder;
+        DailyExcersiseRoutine dailyExcersiseRoutine = dailyExcersiseRoutineList.get(pos);
+        boolean isRestDay = dailyExcersiseRoutine.isRestDay();
 
 
-                myViewHolder.day.setText(dailyExcersiseRoutine.getDay());
-                myViewHolder.restDaySwitch.setOnCheckedChangeListener(null);
-                myViewHolder.restDaySwitch.setChecked(isRestDay);
-                myViewHolder.gridHolder.setVisibility(View.GONE);
-                myViewHolder.restDaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        myViewHolder.day.setText(dailyExcersiseRoutine.getDay());
+        myViewHolder.restDaySwitch.setOnCheckedChangeListener(null);
+        myViewHolder.restDaySwitch.setChecked(isRestDay);
+        myViewHolder.gridHolder.setVisibility(View.GONE);
+        myViewHolder.restDaySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                excersizeRoutineRestSwitchClickListener.onClick(compoundButton, pos, b);
+            }
+        });
+        Context mContext = myViewHolder.day.getContext();
+
+        if (!isRestDay) {
+            myViewHolder.gridHolder.setVisibility(View.VISIBLE);
+            myViewHolder.excerciseGroupHolder.removeAllViews();
+            for (ExcerciseBodyGroup bodyGroup : ExcerciseBodyGroup.values()) {
+
+                final int bodyGroupIndex = bodyGroup.ordinal();
+                CheckBox checkBox = new CheckBox(mContext);
+                checkBox.setId(bodyGroupIndex * 555 + 55);
+                checkBox.setText(Utils.capitalizeFirstLetter(bodyGroup.toString()));
+                checkBox.setOnCheckedChangeListener(null);
+                checkBox.setChecked(dailyExcersiseRoutine.getExcersiseList().get(bodyGroupIndex));
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        excersizeRoutineRestSwitchClickListener.onClick(compoundButton, pos,b);
+                        excerciseRoutineExCheckboxListener.onClick(compoundButton, pos, bodyGroupIndex, b);
                     }
                 });
-                Context mContext = myViewHolder.day.getContext();
 
-                if (!isRestDay) {
-                    myViewHolder.gridHolder.setVisibility(View.VISIBLE);
-                    myViewHolder.excerciseGroupHolder.removeAllViews();
-                    for (ExcerciseBodyGroup bodyGroup : ExcerciseBodyGroup.values()) {
-
-                        final int bodyGroupIndex=bodyGroup.ordinal();
-                        CheckBox checkBox = new CheckBox(mContext);
-                        checkBox.setId(bodyGroupIndex * 555 + 55);
-                        checkBox.setText(Utils.capitalizeFirstLetter(bodyGroup.toString()));
-                        checkBox.setOnCheckedChangeListener(null);
-                        checkBox.setChecked(dailyExcersiseRoutine.getExcersiseList().get(bodyGroupIndex));
-                        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                                excerciseRoutineExCheckboxListener.onClick(compoundButton,pos,bodyGroupIndex,b);
-                            }
-                        });
-
-                        GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(
-                                GridLayout.UNDEFINED, GridLayout.FILL, 1f),
-                                GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
-                        myViewHolder.excerciseGroupHolder.addView(checkBox, param);
-                    }
-                }
-                break;
-
-            case HEADER_VIEW:
-                HeaderItemHolder headerItemHolder = (HeaderItemHolder) holder;
-                break;
+                GridLayout.LayoutParams param = new GridLayout.LayoutParams(GridLayout.spec(
+                        GridLayout.UNDEFINED, GridLayout.FILL, 1f),
+                        GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
+                myViewHolder.excerciseGroupHolder.addView(checkBox, param);
+            }
         }
+//                break;
+
+//            case HEADER_VIEW:
+//                HeaderItemHolder headerItemHolder = (HeaderItemHolder) holder;
+//                break;
+//        }
     }
 
     @Override
     public int getItemCount() {
-        int listSize = 0;
-
-        if (dailyExcersiseRoutineList == null) {
-            return 0;
-        }
-
-        if (dailyExcersiseRoutineList != null) {
-            listSize = dailyExcersiseRoutineList.size();
-
-        }
-
-        if (listSize > 0) {
-            return 1 + listSize;
-        } else {
-            return 0;
-        }
-
+//        int listSize = 0;
+//
+//        if (dailyExcersiseRoutineList == null) {
+//            return 0;
+//        }
+//
+//        if (dailyExcersiseRoutineList != null) {
+//            listSize = dailyExcersiseRoutineList.size();
+//
+//        }
+//
+//        if (listSize > 0) {
+//            return 1 + listSize;
+//        } else {
+//            return 0;
+//        }
+        return dailyExcersiseRoutineList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
 
-        int listSize = 0;
-
-        if (dailyExcersiseRoutineList == null)
-            return super.getItemViewType(position);
-
-        if (dailyExcersiseRoutineList != null) {
-            listSize = dailyExcersiseRoutineList.size();
-        }
-        if (listSize > 0) {
-            if (position == 0) return HEADER_VIEW;
-            else return LIST_ITEM_VIEW;
-        }
+//        int listSize = 0;
+//
+//        if (dailyExcersiseRoutineList == null)
+//            return super.getItemViewType(position);
+//
+//        if (dailyExcersiseRoutineList != null) {
+//            listSize = dailyExcersiseRoutineList.size();
+//        }
+//        if (listSize > 0) {
+//            if (position == 0) return HEADER_VIEW;
+//            else return LIST_ITEM_VIEW;
+//        }
 
         return super.getItemViewType(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return dailyExcersiseRoutineList.get(position).hashCode();
     }
 
     public class ListItemViewHolder extends RecyclerView.ViewHolder {

@@ -40,18 +40,13 @@
                 tools:ignore="ContentDescription"
                 />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/main.toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+            <include
+                layout="@layout/app_bar"
                 app:layout_collapseMode="pin"
-                app:title="Test"
-
+                app:title="Your Routine"
                 />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
-
 
 
     <LinearLayout
@@ -59,29 +54,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp" android:paddingTop="0dp">
+        >
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/dayItemHolder"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
             android:layoutAnimation="@anim/layout_animation_slide_from_left"
             tools:listitem="@layout/day_item"
-            android:layout_weight="1"
             >
 
         </android.support.v7.widget.RecyclerView>
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
+            android:layout_weight="0"
             android:background="@color/colorPrimary"
             android:text="DONE"
             android:textColor="@android:color/white"
-            android:layout_weight="0"
 
             />
 
