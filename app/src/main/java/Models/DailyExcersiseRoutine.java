@@ -2,9 +2,6 @@ package Models;
 
 import java.util.ArrayList;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
 /**
  * Created by Gautam on 18-11-2017.
  */
