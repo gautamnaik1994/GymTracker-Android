@@ -1,0 +1,42 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2054000416468363668",
+      "lastPropertyId": "4:2432080053757404623",
+      "name": "DailyExcersiseRoutine",
+      "properties": [
+        {
+          "id": "1:1513532171078587488",
+          "name": "id"
+        },
+        {
+          "id": "2:8360188435945758818",
+          "name": "day"
+        },
+        {
+          "id": "3:5329648896095937769",
+          "name": "isRestDay"
+        },
+        {
+          "id": "4:2432080053757404623",
+          "name": "exerciseBoolValues"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:2054000416468363668",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
